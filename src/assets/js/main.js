@@ -1,6 +1,6 @@
 import $ from "jquery";
 import * as bootstrap from 'bootstrap';
-const route="https://node-js-test-9u9r.onrender.com/";
+const route="https://rfidpresencev2.onrender.com/";
 const members=$("#members");
 
 $(document).ready(async ()=>{
@@ -9,12 +9,13 @@ $(document).ready(async ()=>{
 
 async function getPresentMembers()
 {   
-    let response=await $.get(route+"get-present")
+    let response=await $.get(route+"get_presence_list")
+    console.log(response);
     members.text("");
-    for(let i in response.data)
+    for(let i in response)
     {
-        let member=response.data[i];
-        let col=`<div class="col-4 my-2"><div class="card"><div class="card-body text-center">${member.name}</div></div> </div>`;
+        let member=response[i];
+        let col=`<div class="col-4 my-2"><div class="card"><div class="card-body text-center">${member.username}</div></div> </div>`;
         members.append(col);
     }
 }
